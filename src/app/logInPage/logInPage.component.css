@@ -1,0 +1,50 @@
+.page{
+  width: 100%;
+  height: 1000px;
+  flex: 1;
+  background: azure;
+  display: flow-root;
+  padding-right: 20px;
+}
+.logInContainer{
+  width: 60%;
+  height: 45%;
+  background-color: darkcyan;
+  margin: auto;
+  margin-top: 4%;
+  border-radius: 25px;
+  flex: 1;
+}
+.text{
+  padding: 10px;
+  text-align: center;
+  font-size: x-large;
+  font-family: "Apple Chancery";
+  color: white;
+}
+.form{
+  margin: 10%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+.dx-field-label{
+  color: white;
+  text-align: start;
+  font-size: large;
+  font-family: Courier;
+  padding-right: 0px;
+  padding-left: 20px;
+}
+.logInButton{
+  margin-left: 40%;
+}
+.dx-field-popup{
+  display: flex;
+  margin: 10px;
+}
+.dx-field-label-popup{
+  color: black;
+  text-align: start;
+  font-size: small;
+  padding-right: 10px;
+}

@@ -1,15 +1,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="page">
+<div class="container">
   <div class="header">
     <div class="logo-section"><span class="logo">Little Helpers</span></div>
     <div class="main-menu">
-      <span class="menu-button">Home</span>
+      <a class="menu-button" [routerLink]="['/home']">Home</a>
       <span class="menu-button">Shop</span>
       <span class="menu-button">Organisations</span>
     </div>
     <div class="buttons-section">
       <button class="styled-button"><i class="fa fa-shopping-cart"></i></button>
-      <button class="styled-button"><i class="fa fa-user"></i></button>
+      <button class="styled-button" (click)="goToLogInPage()"><i class="fa fa-user"></i></button>
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>
