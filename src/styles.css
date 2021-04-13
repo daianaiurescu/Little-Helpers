@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+.mt-35p{
+  margin-top: 35% !important;
+}
+.ml-40p{
+  margin-left: 40% !important ;
+}
+.m-auto{
+  margin: auto !important;
+}
+.pr-17{
+  padding-right: 17px !important;
+}
+.pr-20{
+  padding-right: 20px !important;
+}
+.pr-40{
+  padding-right: 40px !important;
+}
+.pr-53{
+  padding-right: 53px !important;
+}
+.d-gr{
+  display: grid !important;
+}
