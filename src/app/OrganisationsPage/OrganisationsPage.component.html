@@ -1,0 +1,91 @@
+<div class="page">
+  <div class="organisations-container">
+    <div *ngFor="let organisation of organisations" class="organisation-container"
+         (click)="getSelectedOrganisation(organisation)">
+      <p class="title"> {{ organisation.title}} </p>
+      <img [src]=organisation.photo [width]="200">
+    </div>
+  </div>
+</div>
+
+<dx-popup
+  [width]="1200"
+  [height]="500"
+  [showTitle]="true"
+  title=' {{ selectedOrganisation?.title }} '
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="organisationPopupVisible">
+  <div *dxTemplate="let data of 'content'" class="dx-popup-content">
+    <img [src]="selectedOrganisation.photo" [height]="300">
+    <div class="dx-popup-content-text">
+    <p>Area of interest: {{ selectedOrganisation.field}}</p>
+    <p>Year of founding: {{selectedOrganisation.year}}</p>
+    <p>Description: {{selectedOrganisation.description}}</p>
+      <dx-button class="mt-35p"
+        (click)="voluteeringPopupVisible = true"
+        stylingMode="contained"
+        text="Apply for volunteering"
+        type="normal"
+        [width]="300">
+      </dx-button>
+    </div>
+  </div>
+</dx-popup>
+
+<dx-popup
+  [width]="450"
+  [height]="500"
+  [showTitle]="true"
+  title="Apply for volunteering at {{selectedOrganisation?.title}}"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="voluteeringPopupVisible">
+  <div *dxTemplate="let data of 'content'">
+    <div class="form">
+      <div class="dx-fieldset">
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup pr-40">First Name</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="First name..." #volunteerFirstName></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup pr-40">Last Name</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Last name..." #volunteerLastName></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup pr-53">Birthday</div>
+          <div class="dx-field-value" #volunteerBirthday>
+            <dx-date-box
+              [value]="now"
+              type="date">
+            </dx-date-box>
+          </div>
+        </div>
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup pr-17">Phone number</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Phone number..." #volunteerPhone></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup pr-20">Email Address</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Email address..." #volunteerEmail></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field-popup d-gr">
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Tell us about yourself..." height="100" width="310"
+                         #volunteerDetails></dx-text-box>
+          </div>
+        </div>
+      </div>
+      <dx-button class="ml-40p" stylingMode="contained" text="Apply" width="100"></dx-button>
+    </div>
+  </div>
+</dx-popup>
+
