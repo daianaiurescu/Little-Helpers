@@ -1,0 +1,88 @@
+<div class="page">
+  <div class="logInContainer">
+    <p class="text">Please enter your credentials!</p>
+    <div class="form">
+      <div class="dx-fieldset">
+        <div class="dx-field">
+          <div class="dx-field-label">Email Address</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Email Address" #email></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field">
+          <div class="dx-field-label">Password</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Password" mode="password" #password></dx-text-box>
+            <p style="color:white ; text-decoration-line: underline" (click)="forgotPasswordPopupVisible = true">Forgot your password?</p>
+          </div>
+        </div>
+      </div>
+      <dx-button stylingMode="contained" text="Log In" width="200" class="logInButton"></dx-button>
+    </div>
+    <p class="text" (click)="createAnAccountPopupVisible = true" style="text-decoration-line: underline">New User? Create an account!</p>
+  </div>
+</div>
+
+<dx-popup
+  [width]="300"
+  [height]="250"
+  [showTitle]="true"
+  title="Reset Password"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="forgotPasswordPopupVisible">
+  <div *dxTemplate="let data of 'content'">
+    <p style="font-size: medium">Type in your new password</p>
+    <p>
+      <dx-text-box placeholder="New password..." mode="password" #resettedPassword></dx-text-box>
+    </p>
+    <p>
+      <dx-button
+        stylingMode="contained"
+        text="Submit"
+        type="normal"
+        [width]="120">
+      </dx-button>
+    </p>
+  </div>
+</dx-popup>
+<dx-popup
+  [width]="450"
+  [height]="400"
+  [showTitle]="true"
+  title="Create an account"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="createAnAccountPopupVisible">
+  <div *dxTemplate="let data of 'content'">
+    <div class="form">
+      <div class="dx-fieldset">
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup" style="padding-right: 40px">First Name</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="First name..." #newUserFirstName></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup" style="padding-right: 40px">Last Name</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Last name..." #newUserLastName></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup" style="padding-right: 20px">Email Address</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Email address..." #newUserEmail></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup" style="padding-right: 45px">Password</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="Password..." mode="password" #newUserPassword></dx-text-box>
+          </div>
+        </div>
+      </div>
+      <dx-button stylingMode="contained" text="Sign up" width="100" style="margin-left: 40%"></dx-button>
+    </div>
+  </div>
+</dx-popup>
