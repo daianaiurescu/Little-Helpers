@@ -72,7 +72,8 @@
         <div class="dx-field-popup">
           <div class="dx-field-label-popup" style="padding-right: 20px">Email Address</div>
           <div class="dx-field-value">
-            <dx-text-box placeholder="Email address..." #newUserEmail></dx-text-box>
+            <dx-text-box placeholder="Email address..." #newUserEmail>
+            </dx-text-box>
           </div>
         </div>
         <div class="dx-field-popup">
@@ -82,7 +83,7 @@
           </div>
         </div>
       </div>
-      <dx-button stylingMode="contained" text="Sign up" width="100" style="margin-left: 40%"></dx-button>
+      <dx-button (onClick) = "SignUp(newUserFirstName,newUserLastName,newUserEmail,newUserPassword)" stylingMode="contained" text="Sign up" width="100" style="margin-left: 40%"></dx-button>
     </div>
   </div>
 </dx-popup>
