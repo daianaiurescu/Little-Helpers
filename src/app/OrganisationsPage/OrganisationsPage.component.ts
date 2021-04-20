@@ -24,9 +24,28 @@ export class OrganisationsPageComponent implements OnInit{
        this.organisations = response;
     });
    }
-   getSelectedOrganisation(organisation){
+   getSelectedOrganisation(organisation): Organisation{
       this.selectedOrganisation = organisation;
       this.organisationPopupVisible = true;
       return this.selectedOrganisation;
+   }
+   saveVolunteer(fName, lName, bday, phone, email, desc): void{
+     const data = {
+       firstName: fName.value,
+       lastName: lName.value,
+       birthday: bday.value,
+       phone: phone.value,
+       email: email.value,
+       description: desc.value,
+       applied_at: this.selectedOrganisation.title
+     };
+     this.organisationsService.addVolunteer(data)
+       .subscribe(
+         response => {
+           console.log(response);
+         },
+         error => {
+           console.log(error);
+         });
    }
 }
