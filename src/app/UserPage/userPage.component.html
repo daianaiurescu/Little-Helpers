@@ -1,0 +1,78 @@
+<div id="container">
+  <ul>
+    <li>
+      <h1>User options</h1>
+      <i *ngIf="user"> {{user.firstName}} {{user.lastName}}</i>
+      <dx-button
+        class="button-info"
+        text="Details"
+        (onClick)="showInfo()">
+      </dx-button>
+      <dx-button
+        class="button-info"
+        text="Edit"
+        (onClick)="editInfo()">
+      </dx-button>
+    </li>
+  </ul>
+  <dx-popup
+    [width]="300"
+    [height]="250"
+    [showTitle]="true"
+    title="Information"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="InfopopupVisible">
+    <div *dxTemplate="let data of 'content'">
+      <p>
+        Full Name:
+        <span *ngIf="user">{{user.firstName}} {{user.lastName}}</span>
+      </p>
+      <p>
+      <p>
+        Email:
+        <span *ngIf="user">{{user.emailAddress}}</span>
+      </p>
+      <p>
+        Role:
+        <span *ngIf="user">{{user.role}}</span>
+      </p>
+    </div>
+  </dx-popup>
+  <dx-popup
+    [width]="450"
+    [height]="400"
+    [showTitle]="true"
+    title="Edit Information"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="EditpopupVisible">
+    <div *dxTemplate="let data of 'content'">
+      <div class="form">
+        <div class="dx-fieldset">
+          <div class="dx-field-popup">
+            <div class="dx-field-label-popup" style="padding-right: 40px">First Name</div>
+            <div class="dx-field-value">
+              <dx-text-box value="{{user.firstName}}" #newUserFirstName></dx-text-box>
+            </div>
+          </div>
+          <div class="dx-field-popup">
+            <div class="dx-field-label-popup" style="padding-right: 40px">Last Name</div>
+            <div class="dx-field-value">
+              <dx-text-box value="{{user.lastName}}" #newUserLastName></dx-text-box>
+            </div>
+          </div>
+          <div class="dx-field-popup">
+            <div class="dx-field-label-popup" style="padding-right: 20px">Email Address</div>
+            <div class="dx-field-value">
+              <dx-text-box value="{{user.emailAddress}}" #newUserEmail>
+              </dx-text-box>
+            </div>
+          </div>
+        </div>
+        <dx-button (onClick) = "save(newUserFirstName,newUserLastName,newUserEmail)" stylingMode="contained" text="Save" width="100" style="margin-left: 40%"></dx-button>
+        <!--<div class="error" *ngIf="errorSignUpFail">{{ errorSignUp }}</div>-->
+      </div>
+    </div>
+  </dx-popup>
+</div>

@@ -8,12 +8,14 @@ import {DxButtonModule, DxDateBoxModule, DxPopupModule, DxTextBoxModule} from 'd
 import {RouterModule, Routes} from '@angular/router';
 import {OrganisationsPageComponent} from './OrganisationsPage/OrganisationsPage.component';
 import {HttpClientModule} from '@angular/common/http';
+import {userPageComponent} from "./UserPage/userPage.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomePageComponent},
   {path: 'login', component: LogInPageComponent},
-  {path: 'organisations', component: OrganisationsPageComponent}
+  {path: 'organisations', component: OrganisationsPageComponent},
+  {path: 'userpage/:id',component: userPageComponent}
 ];
 
 @NgModule({
@@ -22,6 +24,7 @@ const routes: Routes = [
     LogInPageComponent,
     HomePageComponent,
     OrganisationsPageComponent,
+    userPageComponent,
   ],
   imports: [
     DxTextBoxModule,

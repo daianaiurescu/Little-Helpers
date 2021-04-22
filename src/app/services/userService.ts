@@ -18,9 +18,14 @@ export class UserService {
   getUsers(){
     return this.httpClient.get<Array<User>>(this.apiUrl + 'Users');
   }
-
+  getUser(id :any) {
+    return this.httpClient.get<User>(this.apiUrl + 'User/'+ id);
+  }
   create(data: any): Observable<any> {
     return this.httpClient.post(this.apiUrl + 'Save', data);
+  }
+  signin(data: any):Observable<any> {
+    return this.httpClient.post(this.apiUrl + 'Authenticate', data);
   }
 
 }
