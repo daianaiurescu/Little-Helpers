@@ -23,3 +23,24 @@
 .d-gr{
   display: grid !important;
 }
+.ml-15{
+  margin-left: 15px;
+}
+.mr-15{
+  margin-right: 15px;
+}
+.ml-0{
+  margin-left: 0px !important;
+}
+.padd-l-50{
+  padding-left: 50px;
+}
+.padd-l-30{
+  padding-left: 30px;
+}
+.padd-l-70{
+  padding-left: 70px;
+}
+.padd-l-80{
+  padding-left: 80px;
+}

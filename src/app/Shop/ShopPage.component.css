@@ -1,0 +1,71 @@
+.page{
+  flex: 1;
+  background: azure;
+  display: flow-root;
+  padding-right: 20px;
+}
+.product-container{
+  display: flex;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.product-title{
+  height: fit-content;
+  font-size: x-large;
+  margin-inline: auto;
+  font-family: "Apple Chancery";
+  color: darkcyan;
+  padding-left: 20%;
+  margin-left: 200px;
+}
+.text{
+  font-family: Courier;
+  color: darkcyan;
+  margin-left: 100px;
+}
+.product-info{
+  flex: 0.8;
+}
+.add-to-cart-section{
+  flex: 0.2;
+}
+.dx-field-value{
+  margin-right: 100px;
+  margin-bottom: 10%;
+  margin-top: 25%;
+}
+.button{
+  margin-left: 20px;
+  border-radius: 4px;
+  background: darkcyan;
+  border: 1px solid darkcyan;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 20px;
+  padding: 4px 16px;
+  text-transform: uppercase;
+  transition: 0.4s;
+}
+.button:hover{
+  color: darkcyan;
+  background: transparent;
+  border: 1px solid darkcyan;
+}
+.btn{
+  border-radius: 50%;
+  background: darkcyan;
+  color: white;
+  height: 15%;
+  font-size: 20px;
+}
+.quantity-section{
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+.quantity{
+  color: darkcyan;
+  font-family: Courier;
+  font-size: 20px;
+}

@@ -4,11 +4,15 @@
     <div class="logo-section"><span class="logo">Little Helpers</span></div>
     <div class="main-menu">
       <span class="menu-button" [routerLink]="['/home']">Home</span>
-      <span class="menu-button">Shop</span>
+      <span class="menu-button" [routerLink]="['/shop']">Shop</span>
       <span class="menu-button" [routerLink]="['/organisations']">Organisations</span>
     </div>
     <div class="buttons-section">
-      <button class="styled-button"><i class="fa fa-shopping-cart"></i></button>
+      <div class="cart_value">
+        {{ cartNumber }}
+      </div>
+      <button class="styled-button" (click)="goToCart()"><i class="fa fa-shopping-cart"></i>
+      </button>
       <button class="styled-button" (click)="goToLogInPage()"><i class="fa fa-user"></i></button>
     </div>
   </div>

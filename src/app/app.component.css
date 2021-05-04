@@ -45,3 +45,14 @@
   cursor: pointer;
   margin-top: 10px;
 }
+.cart_value{
+  position: absolute;
+  color: darkcyan;
+  background: white;
+  height: 20px;
+  border-radius: 50%;
+  top: 5%;
+  right: 10.5%;
+  font-size: 20px;
+  padding: 0 8px;
+}

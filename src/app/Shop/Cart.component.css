@@ -1,0 +1,40 @@
+.page{
+  flex: 1;
+  background: azure;
+  display: flow-root;
+  padding-right: 20px;
+  min-height: 600px;
+}
+.column-title{
+  font-family: Courier;
+  color: darkcyan;
+  font-size: large;
+  padding: 40px;
+  padding-right: 100px;
+}
+.page-title{
+  margin-left: 50%;
+  color: darkcyan;
+  font-family: "Apple Chancery";
+}
+.btn{
+  border-radius: 50%;
+  background: darkcyan;
+  color: white;
+  height: 15%;
+  font-size: 20px;
+}
+.removeall {
+  background: darkcyan;
+  color: #fff;
+  font-weight: 600;
+  border: 1px solid darkcyan;
+  border-radius: 4px;
+  margin-left: 48%;
+  font-size: 20px;
+}
+.column-text{
+  color: darkcyan;
+  font-family: Courier;
+  font-size: 20px;
+}
