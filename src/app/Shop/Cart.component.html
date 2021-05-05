@@ -1,0 +1,55 @@
+<div class="page">
+  <h2 class="page-title">Cart</h2>
+  <div *ngIf="cartDetails">
+    <table style="margin-left: 10%">
+      <tr>
+        <th class="column-title">Image</th>
+        <th class="column-title">Price</th>
+        <th class="column-title">Quantity</th>
+        <th class="column-title">Sub Total</th>
+        <th class="column-title">Remove Item</th>
+      </tr>
+      <tr *ngFor="let cartDetail of cartDetails">
+        <td><img src="{{cartDetail.photo}}" alt="P1" [width]="200"></td>
+        <td class="column-text padd-l-50">$ {{cartDetail.price}}</td>
+        <td>
+          <div class="padd-l-30">
+            <button
+              type="button" class="btn mr-15"
+              (click)="incQnt(cartDetail.id, cartDetail.quantity)">
+              <i class="fa fa-plus"></i>
+            </button>
+            <span class="column-text">{{cartDetail.quantity}}
+    </span>
+            <button type="button"
+                    class="btn ml-15"
+                    (click)="decQnt(cartDetail.id, cartDetail.quantity)">
+              <i class="fa fa-minus"></i>
+            </button>
+          </div>
+        </td>
+        <td class="column-text padd-l-70">$ {{cartDetail.quantity * cartDetail.price | number}}
+        </td>
+        <td class="padd-l-80"><button type="button"
+                    class="btn"
+                    (click)="deleteProduct(cartDetail.id)">
+          <i class="fa fa-trash"></i>
+        </button></td>
+      </tr>
+    </table>
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="page-title" style="font-size: x-large">Total - $ {{total}}
+
+        </h3>
+      </div>
+      <div class="col-md-6 text-right">
+        <button type="button"
+                class="removeall"
+                (click)="removeAll()">
+          <i class="fa fa-trash"></i>
+          Remove All Items</button>
+      </div>
+    </div>
+  </div>
+</div>
