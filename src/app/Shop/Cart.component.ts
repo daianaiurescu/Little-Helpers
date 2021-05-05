@@ -77,7 +77,6 @@ export class CartComponent implements OnInit{
     this.total = 0;
     this.cartNumber = 0;
     this.cartService.cartSubject.next(this.cartNumber);
-
   }
 
 }
