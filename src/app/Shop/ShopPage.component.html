@@ -1,0 +1,24 @@
+<div class="page">
+  <div *ngFor="let product of products" class="product-container">
+    <img [src]=product.photo [width]="200">
+    <div class="product-info">
+      <div class="product-title"> {{ product.title}}</div>
+      <p class="text"> {{ product.description }} </p>
+      <p class="text"> Category: {{ product.category }} </p>
+      <p class="text"> Sold by: {{ product.sold_by}} </p>
+      <p class="text"> {{ product.price }}$</p>
+    </div>
+    <div class="add-to-cart-section">
+      <div class="quantity-section">
+        <button type="button" class="btn mr-15" (click)="inc(product)">
+          <i class="fa fa-plus"></i>
+        </button>
+        <span class="quantity text ml-0">{{product.quantity}}</span>
+        <button type="button" class="btn ml-15" (click)="dec(product)">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <dx-button stylingMode="contained" class="button" (onClick)="addToCart(product)">Add to cart!</dx-button>
+    </div>
+  </div>
+</div>
