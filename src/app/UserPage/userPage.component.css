@@ -1,21 +1,24 @@
-.page{
-  height: 1000px;
-  flex: 1;
-  background: azure;
-  display: flow-root;
-  padding-right: 20px;
+::ng-deep #container {
+  padding: 10px;
 }
-.logInContainer{
-  width: 60%;
-  height: 45%;
-  background-color: darkcyan;
-  margin: auto;
-  margin-top: 4%;
-  border-radius: 25px;
-  flex: 1;
+::ng-deep #container ul {
+  list-style-type: none;
+  text-align: center;
+}
+::ng-deep #container ul li {
+  display: inline-block;
+  width: 160px;
+  margin: 10px;
+}
+::ng-deep .button-info {
+  margin: 10px;
+}
+::ng-deep .dx-popup-content p {
+  margin-bottom: 10px;
+  margin-top: 0;
 }
 .text{
-  padding: 1px;
+  padding: 10px;
   text-align: center;
   font-size: x-large;
   font-family: "Apple Chancery";
@@ -34,9 +37,6 @@
   padding-right: 0px;
   padding-left: 20px;
 }
-.logInButton{
-  margin-left: 40%;
-}
 .dx-field-popup{
   display: flex;
   margin: 10px;
@@ -46,9 +46,4 @@
   text-align: start;
   font-size: small;
   padding-right: 10px;
-}
-.error {
-  text-align: center;
-
-
 }
