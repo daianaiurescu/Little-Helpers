@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../Models/User.interface";
+import {User} from "../Models/User";
 import {UserService} from "../services/userService";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
@@ -23,7 +23,6 @@ export class LogInPageComponent implements OnInit{
   constructor(private userService: UserService, private router:Router) {
   }
   ngOnInit(): void {
-
     console.log(':)');
     this.getAllUsersSubscription = this.userService.getUsers().subscribe( response => {
       this.users = response;
@@ -43,12 +42,12 @@ export class LogInPageComponent implements OnInit{
       .subscribe(
         response => {
           this.errorSignUp = "Registration Complete";
-          console.log(response);
+          console.log("Good:"+response);
         },
         error => {
           this.errorSignUp =  error.error;
           this.errorSignUpFail = true;
-          console.log(error);
+          console.log("Bad"+error);
         });
   }
   SingIn(email,password): void {
@@ -60,8 +59,10 @@ export class LogInPageComponent implements OnInit{
      this.userService.signin(data)
        .subscribe(
          response => {
-             //console.log(response);
-             this.user = response;
+             console.log(response);
+           this.user = response;
+           this.userService.authHandler(this.user);
+           console.log(this.user.id);
              this.router.navigate(['/userpage',this.user.id]);
          },
            error => {

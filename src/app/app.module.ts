@@ -7,8 +7,9 @@ import {DxiFieldModule} from 'devextreme-angular/ui/nested';
 import {DxButtonModule, DxDateBoxModule, DxPopupModule, DxTextBoxModule} from 'devextreme-angular';
 import {RouterModule, Routes} from '@angular/router';
 import {OrganisationsPageComponent} from './OrganisationsPage/OrganisationsPage.component';
-import {HttpClientModule} from '@angular/common/http';
 import {userPageComponent} from "./UserPage/userPage.component";
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptorService} from "./services/authInterceptorService";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -24,7 +25,7 @@ const routes: Routes = [
     LogInPageComponent,
     HomePageComponent,
     OrganisationsPageComponent,
-    userPageComponent,
+    userPageComponent
   ],
   imports: [
     DxTextBoxModule,
@@ -36,7 +37,13 @@ const routes: Routes = [
     DxDateBoxModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

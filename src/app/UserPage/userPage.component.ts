@@ -1,7 +1,8 @@
 import {Component, OnInit} from "@angular/core";
-import {User} from "../Models/User.interface";
+import {User} from "../Models/User";
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {UserService} from "../services/userService";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-user-page',
@@ -14,22 +15,24 @@ export class userPageComponent implements OnInit{
   InfopopupVisible = false;
   EditpopupVisible = false;
   idUser : string = this.route.snapshot.paramMap.get('id');
-
+  subscriptionUserService: Subscription;
   constructor(private userService: UserService , private route : ActivatedRoute) {}
   ngOnInit(): void {
     console.log(this.idUser);
-    this.userService.getUser(this.idUser)
-      .subscribe(
-        response => {
-          this.user = response;
-          console.log(this.user);
-        });
+    this.subscriptionUserService = this.userService.user
+      .subscribe(user => {
+        this.user = user;
+      });
+    console.log(this.user);
   }
   showInfo() :void{
     this.InfopopupVisible = true;
   }
   editInfo() :void{
     this.EditpopupVisible = true;
+  }
+  onLogout() {
+    this.userService.logout();
   }
   save(firstName,lastName,email) :void {
 

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {UserService} from "./services/userService";
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,14 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit{
   title = 'Little-Helpers';
-  constructor(private router: Router) {}
+  constructor(private userService: UserService,private router: Router ) {}
 
   ngOnInit(): void {
     console.log('home');
   }
   goToLogInPage(): void{
+    if(!this.userService.user.getValue())
     this.router.navigate(['login']);
+    else  this.router.navigate(['/userpage',this.userService.user.getValue().id]);
   }
 }
