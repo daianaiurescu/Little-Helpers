@@ -1,15 +1,15 @@
-import {environment} from "../../environments/environment";
-//import jwt_decode();
-import jwt_decode, {JwtPayload} from "jwt-decode";
-import {HttpClient} from "@angular/common/http";
-import {Organisation} from "../Models/Organisation.interface";
-import {User} from "../Models/User";
-import {Injectable} from "@angular/core";
-import {BehaviorSubject, Observable} from "rxjs";
-import {Router} from "@angular/router";
-import {tap} from "rxjs/operators";
-import {types} from "util";
-import jwtDecode from "jwt-decode";
+import {environment} from '../../environments/environment';
+// import jwt_decode();
+import jwt_decode, {JwtPayload} from 'jwt-decode';
+import {HttpClient} from '@angular/common/http';
+import {Organisation} from '../Models/Organisation.interface';
+import {User} from '../Models/User';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Router} from '@angular/router';
+import {tap} from 'rxjs/operators';
+import {types} from 'util';
+import jwtDecode from 'jwt-decode';
 
 export interface AuthResp {
   id: number;
@@ -50,7 +50,7 @@ export class UserService {
   }
 
    authHandler(crd: AuthResp) {
-    const expiresIn = (<JwtPayload>jwtDecode(crd.token)).exp;
+    const expiresIn = (jwtDecode(crd.token) as JwtPayload).exp;
     console.log(expiresIn);
     const expirationDate = new Date(expiresIn * 1000);
     const user = new User(crd.id, crd.firstName, crd.lastName, crd.emailAddress, crd.role, crd.token, expirationDate);
