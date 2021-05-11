@@ -8,16 +8,20 @@ import {Observable} from 'rxjs';
     providedIn: 'root'
   }
 )
-export class OrganisationsService{
+export class OrganisationsService {
   private apiUrl = environment.api;
 
   constructor(private httpClient: HttpClient){}
   // tslint:disable-next-line:typedef
-   getOrganisations(){
+  getOrganisations() {
     return this.httpClient.get<Array<Organisation>>(this.apiUrl + 'Organisations');
   }
 
   addVolunteer(data: any): Observable<any> {
     return this.httpClient.post(this.apiUrl + 'SaveVolunteer', data);
+  }
+
+  getVolunteer(data: any): Observable<any> {
+    return this.httpClient.get(this.apiUrl + 'GetVolunteer', data);
   }
 }

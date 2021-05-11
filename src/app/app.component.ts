@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from "./services/userService";
 import {CartService} from './services/cartService';
+import data from "devextreme";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit{
   title = 'Little-Helpers';
   cartNumber = 0;
   constructor(private userService: UserService, private router: Router, private cartService: CartService) {
-      this.cartService.cartSubject.subscribe(data => this.cartNumber = data);
+      this.cartService.cartSubject.subscribe(data => typeof data === "number" ? this.cartNumber = data : data);
   }
 
   ngOnInit(): void {

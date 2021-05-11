@@ -45,6 +45,10 @@ export class UserService {
     return this.httpClient.post(this.apiUrl + 'Save', data);
   }
 
+  changePassword(data:any) {
+    return this.httpClient.post(this.apiUrl + 'ChangePassword',data);
+  }
+
   signin(data: any): Observable<any> {
     return this.httpClient.post(this.apiUrl + 'Authenticate', data);
   }

@@ -40,3 +40,7 @@
   font-family: Courier;
   height: fit-content;
 }
+.error {
+  margin: 20px;
+  text-align: center;
+}

@@ -23,7 +23,7 @@
     <p>Year of founding: {{selectedOrganisation.year}}</p>
     <p>Description: {{selectedOrganisation.description}}</p>
       <dx-button class="mt-35p"
-        (click)="voluteeringPopupVisible = true"
+        (click)="voluteeringPopupVisible = true ; errorMsgFail = false"
         stylingMode="contained"
         text="Apply for volunteering"
         type="normal"
@@ -35,7 +35,7 @@
 
 <dx-popup
   [width]="450"
-  [height]="500"
+  [height]="600"
   [showTitle]="true"
   title="Apply for volunteering at {{selectedOrganisation?.title}}"
   [dragEnabled]="false"
@@ -47,13 +47,13 @@
         <div class="dx-field-popup">
           <div class="dx-field-label-popup pr-40">First Name</div>
           <div class="dx-field-value">
-            <dx-text-box placeholder="First name..." #volunteerFirstName></dx-text-box>
+            <dx-text-box value={{userFirstName}} #volunteerFirstName></dx-text-box>
           </div>
         </div>
         <div class="dx-field-popup">
           <div class="dx-field-label-popup pr-40">Last Name</div>
           <div class="dx-field-value">
-            <dx-text-box placeholder="Last name..." #volunteerLastName></dx-text-box>
+            <dx-text-box value={{userLastName}} #volunteerLastName></dx-text-box>
           </div>
         </div>
         <div class="dx-field-popup">
@@ -74,7 +74,7 @@
         <div class="dx-field-popup">
           <div class="dx-field-label-popup pr-20">Email Address</div>
           <div class="dx-field-value">
-            <dx-text-box placeholder="Email address..." #volunteerEmail></dx-text-box>
+            <dx-text-box value={{userEmailAddress}} #volunteerEmail></dx-text-box>
           </div>
         </div>
         <div class="dx-field-popup d-gr">
@@ -86,6 +86,7 @@
       </div>
       <dx-button class="ml-40p" stylingMode="contained" text="Apply" width="100" (onClick)="saveVolunteer(volunteerFirstName, volunteerLastName, volunteerBirthday, volunteerPhone, volunteerEmail, volunteerDetails)"></dx-button>
     </div>
+    <div class="error" *ngIf="errorMsgFail">{{ errorMsg }}</div>
   </div>
 </dx-popup>
 

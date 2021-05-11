@@ -20,6 +20,8 @@ export class LogInPageComponent implements OnInit{
   errorSignIn: string;
   errorSignUpFail: boolean = false;
   errorSignInFail: boolean = false;
+  errorChangePasswordFail:boolean;
+  errorChangePassword: string;
   constructor(private userService: UserService, private router:Router) {
   }
   ngOnInit(): void {
@@ -41,13 +43,14 @@ export class LogInPageComponent implements OnInit{
     this.userService.create(data)
       .subscribe(
         response => {
-          this.errorSignUp = "Registration Complete";
-          console.log("Good:"+response);
+          console.log(response);
         },
         error => {
+          if(error.error.text == undefined)
           this.errorSignUp =  error.error;
+          else this.errorSignUp = "Registration complete"
           this.errorSignUpFail = true;
-          console.log("Bad"+error);
+          console.log(error);
         });
   }
   SingIn(email,password): void {
@@ -71,5 +74,24 @@ export class LogInPageComponent implements OnInit{
              console.log(this.errorSignIn);
          });
   }
+  ChangePassword(email,password):void {
+    const data = {
+      username : email.value,
+      password : password.value
+    };
+    this.userService.changePassword(data).subscribe(
+          response => {
+            console.log("Good"+response);
+          },
+          error => {
+            this.errorChangePasswordFail = true;
+            if(error.error.text == undefined)
+            this.errorChangePassword = error.error;
+            else this.errorChangePassword = "Changed password";
+          }
+    )
+    console.log(this.errorChangePassword);
+  }
+
 
 }
