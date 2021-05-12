@@ -4,7 +4,15 @@ import { AppComponent } from './app.component';
 import {LogInPageComponent} from './logInPage/logInPage.component';
 import {HomePageComponent} from './HomePage/HomePage.component';
 import {DxiFieldModule} from 'devextreme-angular/ui/nested';
-import {DxButtonModule, DxDateBoxModule, DxPopupModule, DxRadioGroupModule, DxSelectBoxModule, DxTextBoxModule} from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxDateBoxModule,
+  DxPopupModule,
+  DxRadioGroupModule,
+  DxScrollViewModule,
+  DxSelectBoxModule,
+  DxTextBoxModule
+} from 'devextreme-angular';
 import {RouterModule, Routes} from '@angular/router';
 import {OrganisationsPageComponent} from './OrganisationsPage/OrganisationsPage.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -13,7 +21,7 @@ import {CartComponent} from './Shop/Cart.component';
 import {UserPageComponent} from './UserPage/userPage.component';
 import {AuthInterceptorService} from './services/authInterceptorService';
 import {LoggedOrganisationComponent} from './OrganisationsPage/LoggedOrganisation.component';
-import { AngularFireModule } from '@angular/fire';
+//import { AngularFireModule } from '@angular/fire';
 import {environment} from '../environments/environment';
 
 const routes: Routes = [
@@ -49,7 +57,8 @@ const routes: Routes = [
     HttpClientModule,
     DxSelectBoxModule,
     DxRadioGroupModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    DxScrollViewModule,
+    //AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

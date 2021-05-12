@@ -3,6 +3,8 @@ import {User} from '../Models/User';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {UserService} from '../services/userService';
 import {Subscription} from 'rxjs';
+import {Organisation} from "../Models/Organisation.interface";
+import {OrganisationsService} from "../services/organisationsService";
 
 @Component({
   selector: 'app-user-page',
@@ -14,10 +16,15 @@ export class UserPageComponent implements OnInit{
   user: User;
   InfopopupVisible = false;
   EditpopupVisible = false;
+  ViewOrgVisible :boolean;
+  failViewOrgVisible :boolean;
+  organisations : Organisation[];
+  getAllOrganisationsSubscription: Subscription;
   idUser: string = this.route.snapshot.paramMap.get('id');
   subscriptionUserService: Subscription;
-  constructor(private userService: UserService , private route: ActivatedRoute) {}
+  constructor(private userService: UserService ,private organisationsService : OrganisationsService, private route: ActivatedRoute) {}
   ngOnInit(): void {
+
     this.subscriptionUserService = this.userService.user
       .subscribe(user => {
         this.user = user;
@@ -28,6 +35,19 @@ export class UserPageComponent implements OnInit{
   }
   editInfo(): void{
     this.EditpopupVisible = true;
+  }
+  viewOrg():void {
+    this.ViewOrgVisible = false;
+    this.failViewOrgVisible = false;
+    this.getAllOrganisationsSubscription = this.organisationsService.getOrganisationsForUser(this.user.emailAddress).subscribe(response => {
+      this.organisations = response;
+      if(this.organisations.length == 0) {
+        this.failViewOrgVisible = true;
+      }
+      else
+        this.ViewOrgVisible = true;
+    });
+
   }
   onLogout(): void {
     this.userService.logout();
@@ -49,5 +69,14 @@ export class UserPageComponent implements OnInit{
       }
     );
     this.EditpopupVisible = false;
+  }
+  deleteOrganisation(organisation): void{
+    this.organisationsService.deleteOrganisationForUser(this.user.emailAddress,organisation.title).subscribe(response => {
+        console.log(response);
+        this.viewOrg();
+      },
+      error => {
+        console.log(error);
+      });
   }
 }

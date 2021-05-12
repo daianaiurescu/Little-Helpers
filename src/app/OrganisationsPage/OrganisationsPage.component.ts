@@ -57,9 +57,12 @@ export class OrganisationsPageComponent implements OnInit{
           },
           error => {
             console.log(error);
-            this.errorMsg =  error.error;
             this.errorMsgFail = true;
-          });
-     this.voluteeringPopupVisible = false;
+            if (error.error.text === undefined) {
+              this.errorMsg = error.error;
+            }
+            else { this.errorMsg = 'Saved'; }
+        });
+     //this.voluteeringPopupVisible = false;
     }
 }
