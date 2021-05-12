@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {UserService} from "./services/userService";
+import {UserService} from './services/userService';
 import {CartService} from './services/cartService';
-import data from "devextreme";
 
 @Component({
   selector: 'app-root',
@@ -20,9 +19,17 @@ export class AppComponent implements OnInit{
     this.cartNumberFunc();
   }
   goToLogInPage(): void{
-    if(!this.userService.user.getValue())
+    if (!this.userService.user.getValue()) {
     this.router.navigate(['login']);
-    else  this.router.navigate(['/userpage',this.userService.user.getValue().id]);
+    }
+    else {
+      if (this.userService.user.getValue().role === 'user') {
+        this.router.navigate(['/userpage', this.userService.user.getValue().id]);
+      }
+      else{
+        this.router.navigate(['loggedOrganisation', this.userService.user.getValue().id]);
+      }
+    }
   }
   goToCart(): void{
     this.router.navigate(['cart']);

@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import {LogInPageComponent} from './logInPage/logInPage.component';
 import {HomePageComponent} from './HomePage/HomePage.component';
 import {DxiFieldModule} from 'devextreme-angular/ui/nested';
-import {DxButtonModule, DxDateBoxModule, DxPopupModule, DxSelectBoxModule, DxTextBoxModule} from 'devextreme-angular';
+import {DxButtonModule, DxDateBoxModule, DxPopupModule, DxRadioGroupModule, DxSelectBoxModule, DxTextBoxModule} from 'devextreme-angular';
 import {RouterModule, Routes} from '@angular/router';
 import {OrganisationsPageComponent} from './OrganisationsPage/OrganisationsPage.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -12,6 +12,7 @@ import {ShopPageComponent} from './Shop/ShopPage.component';
 import {CartComponent} from './Shop/Cart.component';
 import {UserPageComponent} from './UserPage/userPage.component';
 import {AuthInterceptorService} from './services/authInterceptorService';
+import {LoggedOrganisationComponent} from './OrganisationsPage/LoggedOrganisation.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -31,7 +32,8 @@ const routes: Routes = [
     OrganisationsPageComponent,
     ShopPageComponent,
     CartComponent,
-    UserPageComponent
+    UserPageComponent,
+    LoggedOrganisationComponent
   ],
   imports: [
     DxTextBoxModule,
@@ -42,7 +44,8 @@ const routes: Routes = [
     DxButtonModule,
     DxDateBoxModule,
     HttpClientModule,
-    DxSelectBoxModule
+    DxSelectBoxModule,
+    DxRadioGroupModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -1,0 +1,67 @@
+.page{
+  height: 1000px;
+  flex: 1;
+  background: azure;
+  display: flow-root;
+  padding-right: 20px;
+}
+.title{
+  color: darkcyan;
+  font-family: "Apple Chancery";
+  margin-left: 45%;
+}
+.subtitle{
+  color: darkcyan;
+  font-family: "Apple Chancery";
+  margin-left: 40%;
+}
+.product-container{
+  display: flex;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+::ng-deep .dx-overlay-content .dx-popup-content{
+  overflow: auto;
+}
+.buttons-section{
+  display: grid;
+  margin: 0 20%;
+}
+.button-info{
+  border-radius: 4px;
+  background: darkcyan;
+  border: 1px solid darkcyan;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 20px;
+  padding: 4px 16px;
+  text-transform: uppercase;
+  transition: 0.4s;
+}
+.popup-buttons{
+  margin: 5% 20%;
+}
+.form{
+  margin: 10%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+.dx-field-label{
+  color: white;
+  text-align: start;
+  font-size: large;
+  font-family: Courier;
+  padding-right: 0px;
+  padding-left: 20px;
+}
+.dx-field-popup{
+  display: flex;
+  margin: 10px;
+}
+.dx-field-label-popup{
+  color: black;
+  text-align: start;
+  font-size: small;
+  padding-right: 10px;
+}

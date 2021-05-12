@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Organisation} from '../Models/Organisation.interface';
 import {OrganisationsService} from '../services/organisationsService';
 import {Subscription} from 'rxjs';
-import {UserService} from "../services/userService";
+import {UserService} from '../services/userService';
 
 @Component({
   selector: 'app-organisations-page',
@@ -17,19 +17,18 @@ export class OrganisationsPageComponent implements OnInit{
   organisations: Organisation[];
   getAllOrganisationsSubscription: Subscription;
   selectedOrganisation: Organisation;
-  userFirstName :string = "First name...";
-  userLastName :string = "Last name...";
-  userEmailAddress :string = "Email address...";
-  errorMsg :string = "";
-  errorMsgFail :boolean;
+  userFirstName = 'First name...';
+  userLastName = 'Last name...';
+  userEmailAddress = 'Email address...';
+  errorMsg = '';
+  errorMsgFail: boolean;
   constructor(private userService: UserService , private organisationsService: OrganisationsService) {
   }
    ngOnInit(): void {
-     console.log(':)');
      this.getAllOrganisationsSubscription = this.organisationsService.getOrganisations().subscribe( response => {
        this.organisations = response;
     });
-     if(this.userService.user.getValue()) {
+     if (this.userService.user.getValue()) {
        this.userFirstName = this.userService.user.getValue().firstName;
        this.userLastName = this.userService.user.getValue().lastName;
        this.userEmailAddress = this.userService.user.getValue().emailAddress;
@@ -51,7 +50,7 @@ export class OrganisationsPageComponent implements OnInit{
        applied_at: this.selectedOrganisation.title
      };
      console.log(data);
-      this.organisationsService.addVolunteer(data)
+     this.organisationsService.addVolunteer(data)
         .subscribe(
           response => {
             console.log(response);
@@ -61,5 +60,6 @@ export class OrganisationsPageComponent implements OnInit{
             this.errorMsg =  error.error;
             this.errorMsgFail = true;
           });
+     this.voluteeringPopupVisible = false;
     }
 }

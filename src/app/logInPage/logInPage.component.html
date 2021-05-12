@@ -13,7 +13,7 @@
           <div class="dx-field-label">Password</div>
           <div class="dx-field-value">
             <dx-text-box placeholder="Password" mode="password" #password></dx-text-box>
-            <p style="color:white ; text-decoration-line: underline" (click)="forgotPasswordPopupVisible = true ; errorChangePasswordFail = false">Forgot your password?</p>
+            <p style="color:white ; text-decoration-line: underline" (click)="forgotPasswordPopupVisible = true">Forgot your password?</p>
           </div>
         </div>
       </div>
@@ -27,32 +27,25 @@
 
 <dx-popup
   [width]="300"
-  [height]="350"
+  [height]="250"
   [showTitle]="true"
   title="Reset Password"
   [dragEnabled]="false"
   [closeOnOutsideClick]="true"
   [(visible)]="forgotPasswordPopupVisible">
   <div *dxTemplate="let data of 'content'">
-
-    <p style="font-size: medium">Type your email</p>
-    <p>
-      <dx-text-box placeholder="Email address..." #emailAddress></dx-text-box>
-    </p>
     <p style="font-size: medium">Type in your new password</p>
     <p>
       <dx-text-box placeholder="New password..." mode="password" #resettedPassword></dx-text-box>
     </p>
     <p>
       <dx-button
-        (onClick) = "ChangePassword(emailAddress,resettedPassword)"
         stylingMode="contained"
         text="Submit"
         type="normal"
         [width]="120">
       </dx-button>
     </p>
-    <div class="error" *ngIf="errorChangePasswordFail">{{ errorChangePassword }}</div>
   </div>
 </dx-popup>
 <dx-popup
@@ -91,8 +84,14 @@
             <dx-text-box placeholder="Password..." mode="password" #newUserPassword></dx-text-box>
           </div>
         </div>
+        <dx-radio-group
+          [items]="roles"
+          [value]="roles[0]"
+          layout="horizontal"
+        (onValueChanged)="setUserRole($event)">
+        </dx-radio-group>
       </div>
-      <dx-button (onClick) = "SignUp(newUserFirstName,newUserLastName,newUserEmail,newUserPassword)" stylingMode="contained" text="Sign up" width="100" style="margin-left: 40%"></dx-button>
+      <dx-button (onClick) = "SignUp(newUserFirstName,newUserLastName,newUserEmail,newUserPassword, selectedRole)" stylingMode="contained" text="Sign up" width="100" style="margin-left: 40%"></dx-button>
       <div class="error" *ngIf="errorSignUpFail">{{ errorSignUp }}</div>
     </div>
   </div>
