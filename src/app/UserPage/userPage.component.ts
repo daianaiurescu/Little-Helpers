@@ -18,12 +18,10 @@ export class UserPageComponent implements OnInit{
   subscriptionUserService: Subscription;
   constructor(private userService: UserService , private route: ActivatedRoute) {}
   ngOnInit(): void {
-    console.log(this.idUser);
     this.subscriptionUserService = this.userService.user
       .subscribe(user => {
         this.user = user;
       });
-    console.log(this.user);
   }
   showInfo(): void{
     this.InfopopupVisible = true;
@@ -31,10 +29,25 @@ export class UserPageComponent implements OnInit{
   editInfo(): void{
     this.EditpopupVisible = true;
   }
-  onLogout() {
+  onLogout(): void {
     this.userService.logout();
   }
-  save(firstName, lastName, email): void {
-
+  save(lastName, email): void {
+    const data = {
+      firstName: this.user.lastName,
+      lastName: lastName.value,
+      emailAddress: email.value
+    };
+    this.userService.editUserInfo(data).subscribe(
+      response => {
+        console.log('Good' + response);
+        this.user.firstName = lastName.value;
+        this.user.emailAddress = email.value;
+      },
+      error => {
+        console.log('Bad' + error);
+      }
+    );
+    this.EditpopupVisible = false;
   }
 }

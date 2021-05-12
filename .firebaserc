@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "little-helpers-40212": {
+      "hosting": {
+        "Little-Helpers": [
+          "little-helpers-40212"
+        ]
+      }
+    }
+  }
+}

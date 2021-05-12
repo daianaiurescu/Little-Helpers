@@ -55,15 +55,9 @@
     <div class="form">
       <div class="dx-fieldset">
         <div class="dx-field-popup">
-          <div class="dx-field-label-popup" style="padding-right: 40px">First Name</div>
-          <div class="dx-field-value">
-            <dx-text-box value="{{user.firstName}}" #newUserFirstName></dx-text-box>
-          </div>
-        </div>
-        <div class="dx-field-popup">
           <div class="dx-field-label-popup" style="padding-right: 40px">Last Name</div>
           <div class="dx-field-value">
-            <dx-text-box value="{{user.lastName}}" #newUserLastName></dx-text-box>
+            <dx-text-box value="{{user.firstName}}" #newUserLastName></dx-text-box>
           </div>
         </div>
         <div class="dx-field-popup">
@@ -74,7 +68,7 @@
           </div>
         </div>
       </div>
-      <dx-button (onClick)="save(newUserFirstName,newUserLastName,newUserEmail)" stylingMode="contained" text="Save"
+      <dx-button (onClick)="save(newUserLastName, newUserEmail)" stylingMode="contained" text="Save"
                  width="100" style="margin-left: 40%"></dx-button>
       <!--<div class="error" *ngIf="errorSignUpFail">{{ errorSignUp }}</div>-->
     </div>

@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Volunteer} from '../Models/Volunteer.interface';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -32,5 +33,11 @@ export class OrganisationsService{
 
   getVolunteer(data: any): Observable<any> {
     return this.httpClient.get(this.apiUrl + 'GetVolunteer', data);
+  }
+
+  // tslint:disable-next-line:typedef
+  editDescription(data: any){
+    console.log(data);
+    return this.httpClient.post(this.apiUrl + 'ChangeOrganisationDetails', data);
   }
 }

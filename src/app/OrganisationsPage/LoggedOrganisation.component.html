@@ -10,7 +10,7 @@
     </dx-button>
     <dx-button
       class="button-info"
-      text="Edit your information"
+      text="Edit your description"
       (onClick)="editInfoPopupVisible = true">
     </dx-button>
     <dx-button
@@ -72,19 +72,13 @@
     <div class="form">
       <div class="dx-fieldset">
         <div class="dx-field-popup">
-          <div class="dx-field-label-popup" style="padding-right: 80px">Title</div>
-          <div class="dx-field-value">
-            <dx-text-box value="{{loggedOrganisation.title}}" #newTitle></dx-text-box>
-          </div>
-        </div>
-        <div class="dx-field-popup">
           <div class="dx-field-label-popup" style="padding-right: 40px">Description</div>
           <div class="dx-field-value">
             <dx-text-box value="{{loggedOrganisation.description}}" #newDescription></dx-text-box>
           </div>
         </div>
       </div>
-      <dx-button (onClick)="save(newTitle, newDescription)" stylingMode="contained" text="Save"
+      <dx-button (onClick)="save(newDescription)" stylingMode="contained" text="Save"
                  width="100" style="margin-left: 40%"></dx-button>
     </div>
   </div>
@@ -105,6 +99,9 @@
         <p class="text"> {{ product.description }} </p>
         <p class="text"> Category: {{ product.category }} </p>
         <p class="text"> {{ product.price }}$</p>
+      </div>
+      <div class="buttons-section">
+        <dx-button class="button-info" style="height: 50px;width: 200px" (onClick)="deleteProduct(product)"> Delete product</dx-button>
       </div>
     </div>
   </div>
@@ -128,14 +125,14 @@
         </span>
       <div class="popup-buttons">
         <dx-button class="button-info mr-15"> Accept volunteer</dx-button>
-        <dx-button class="button-info" (onClick)="deleteVolunteer(volunteer)"> Delete volunteer</dx-button>
+        <dx-button class="button-info"> Delete volunteer</dx-button>
       </div>
     </div>
   </div>
 </dx-popup>
 <dx-popup
   [width]="450"
-  [height]="500"
+  [height]="600"
   [showTitle]="true"
   title="Add a new product"
   [dragEnabled]="false"
@@ -151,22 +148,23 @@
           </div>
         </div>
         <div class="dx-field-popup">
-          <div class="dx-field-label-popup" style="padding-right: 40px">Category</div>
+          <div class="dx-field-label-popup">Category</div>
           <div class="dx-field-value">
             <dx-text-box placeholder="Category..." #newCategory></dx-text-box>
           </div>
         </div>
         <div class="dx-field-popup">
-          <div class="dx-field-label-popup" style="padding-right: 20px">Price</div>
+          <div class="dx-field-label-popup" style="padding-right: 35px">Price</div>
           <div class="dx-field-value">
             <dx-text-box placeholder="Price..." #newPrice>
             </dx-text-box>
           </div>
         </div>
         <div class="dx-field-popup">
-          <div class="dx-field-label-popup" style="padding-right: 45px">Stock</div>
+          <div class="dx-field-label-popup" style="padding-right: 30px">Stock</div>
           <div class="dx-field-value">
-            <dx-text-box placeholder=Stock..." #newStock></dx-text-box>
+            <dx-text-box placeholder="Stock..." #newStock>
+            </dx-text-box>
           </div>
         </div>
         <div class="dx-field-popup d-gr">
@@ -178,10 +176,11 @@
       </div>
       <div class="form-group">
         <input type="file" accept="*.png.jpg" (change)="upload($event)">
-        <button (click)="createRecord()">Upload image</button>
+        <dx-button (onClick)="createRecord()"
+                   stylingMode="contained" text="Upload" width="100"></dx-button>
       </div>
       <dx-button (onClick)="saveProduct(newTitle, newCategory, newPrice, newStock, newDescription)"
-                 stylingMode="contained" text="Save product" width="100" style="margin-left: 40%"></dx-button>
+                 stylingMode="contained" text="Save product" width="200" style="margin-left: 25%"></dx-button>
     </div>
   </div>
 </dx-popup>

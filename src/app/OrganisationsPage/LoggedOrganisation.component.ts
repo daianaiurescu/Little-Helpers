@@ -30,48 +30,81 @@ export class LoggedOrganisationComponent implements OnInit {
   addProductsPopupVisible = false;
   selectedImage: string;
   Image: string;
+
   constructor(private userService: UserService,
               private organisationsService: OrganisationsService,
               private productService: ProductService,
               private storage: AngularFireStorage
-              ) {
+  ) {
   }
+
   ngOnInit(): void {
     this.subscriptionUserService = this.userService.user
       .subscribe(user => {
         this.organisation = user;
       });
+    this.setLoggedOrganisation();
+  }
+
+  setLoggedOrganisation(): void{
     const title = this.organisation?.lastName + ' ' + this.organisation?.firstName;
-    this.organisationSubscription = this.organisationsService.getLoggedInOrganisation(title).subscribe( response => {
+    this.organisationSubscription = this.organisationsService.getLoggedInOrganisation(title).subscribe(response => {
       this.loggedOrganisation = response;
     });
   }
-  logout(): void{
+  logout(): void {
     this.userService.logout();
   }
-  save(title, description): void{
-    this.loggedOrganisation.title = title;
-    this.loggedOrganisation.description = description;
+
+  save(description): void {
+    const data = {
+      title: this.loggedOrganisation.title,
+      description: description.value
+    };
+    this.organisationsService.editDescription(data).subscribe(
+      response => {
+        console.log('Good' + response);
+        this.loggedOrganisation.description = description.value;
+      },
+      error => {
+        console.log('Bad' + error);
+      }
+    );
+    this.editInfoPopupVisible = false;
   }
-  viewProducts(): void{
+
+  viewProducts(): void {
     this.getAllProductsSubscription = this.productService.getProducts().subscribe(response => {
       this.products = response.filter(product => product.sold_by === this.loggedOrganisation?.title);
     });
     this.productsPopupVisible = true;
   }
-  viewVolunteers(): void{
+
+  deleteProduct(product): void{
+    const data = {
+      title: product.title
+    };
+    this.productService.delete(data).subscribe(response => {
+      console.log(response);
+      this.viewProducts();
+    },
+      error => {
+        console.log(error);
+      });
+  }
+
+  viewVolunteers(): void {
     this.getAllVolunteersSubscription = this.organisationsService.getVolunteers().subscribe(response =>
       this.volunteers = response.filter(volunteer => volunteer.applied_at === this.loggedOrganisation?.title));
     this.volunteersPopupVisible = true;
   }
-  // deleteVolunteer(volunteer: Volunteer): void{
-  //   console.log('aa');
-  //   this.organisationsService.deleteVolunteer(volunteer);
-  // }
-  upload($event): void{
+
+  upload($event): void {
     this.selectedImage = $event.target.files[0];
+    this.createRecord();
   }
-  createRecord(): void{
+
+  createRecord(): void {
     // tslint:disable-next-line:prefer-const
     let filePath = `/files/_${new Date().getTime()}`;
     const fileRef = this.storage.ref(filePath);
@@ -83,18 +116,26 @@ export class LoggedOrganisationComponent implements OnInit {
       })
     ).subscribe();
   }
-  saveProduct(title, category, price, stock, description): void{
+
+  saveProduct(title, category, price, stock, description): void {
     const data = {
       title: title.value,
       category: category.value,
-      sold_by: this.loggedOrganisation,
+      sold_by: this.loggedOrganisation.title,
       price: price.value,
       stock: stock.value,
       description: description.value,
       photo: this.Image,
       quantity: 1
     };
-    console.log(data);
-   //  this.productService.addProduct(data);
+    this.productService.addProduct(data)
+      .subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        });
+    this.addProductsPopupVisible = false;
   }
 }

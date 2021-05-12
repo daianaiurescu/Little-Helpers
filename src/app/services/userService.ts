@@ -127,5 +127,10 @@ export class UserService {
     }
   }
 
+  // tslint:disable-next-line:typedef
+  editUserInfo(data: any){
+    return this.httpClient.post(this.apiUrl + 'ChangeUserDetails', data);
+  }
+
 }
 

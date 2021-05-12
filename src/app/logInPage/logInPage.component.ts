@@ -27,7 +27,6 @@ export class LogInPageComponent implements OnInit{
   constructor(private userService: UserService, private router: Router) {
   }
   ngOnInit(): void {
-    console.log(':)');
     this.getAllUsersSubscription = this.userService.getUsers().subscribe( response => {
       this.users = response;
     });

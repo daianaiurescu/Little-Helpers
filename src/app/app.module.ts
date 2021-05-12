@@ -13,6 +13,8 @@ import {CartComponent} from './Shop/Cart.component';
 import {UserPageComponent} from './UserPage/userPage.component';
 import {AuthInterceptorService} from './services/authInterceptorService';
 import {LoggedOrganisationComponent} from './OrganisationsPage/LoggedOrganisation.component';
+import { AngularFireModule } from '@angular/fire';
+import {environment} from '../environments/environment';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,7 +23,8 @@ const routes: Routes = [
   {path: 'organisations', component: OrganisationsPageComponent},
   {path: 'shop', component: ShopPageComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'userpage/:id', component: UserPageComponent}
+  {path: 'userpage/:id', component: UserPageComponent},
+  {path: 'loggedOrganisation/:id', component: LoggedOrganisationComponent}
 ];
 
 @NgModule({
@@ -45,7 +48,8 @@ const routes: Routes = [
     DxDateBoxModule,
     HttpClientModule,
     DxSelectBoxModule,
-    DxRadioGroupModule
+    DxRadioGroupModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

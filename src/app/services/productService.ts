@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Product} from '../Models/Product.interface';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -19,5 +20,11 @@ export class ProductService{
 
   addProduct(data: any): Observable<any> {
     return this.httpClient.post(this.apiUrl + 'SaveProduct', data);
+  }
+  // tslint:disable-next-line:typedef
+  delete(data: any){
+    console.log(data);
+    return this.httpClient.delete(this.apiUrl + 'DeleteProduct/' + data.title).pipe(tap(() => {
+    }));
   }
 }

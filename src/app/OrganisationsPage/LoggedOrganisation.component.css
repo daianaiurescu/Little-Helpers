@@ -65,3 +65,7 @@
   font-size: small;
   padding-right: 10px;
 }
+.form-group{
+  display: flex;
+  padding-bottom: 20px;
+}

@@ -49,7 +49,7 @@ export class OrganisationsPageComponent implements OnInit{
        description: desc.value,
        applied_at: this.selectedOrganisation.title
      };
-     console.log(data);
+
      this.organisationsService.addVolunteer(data)
         .subscribe(
           response => {
