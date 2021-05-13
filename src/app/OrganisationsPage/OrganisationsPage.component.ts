@@ -3,6 +3,7 @@ import {Organisation} from '../Models/Organisation.interface';
 import {OrganisationsService} from '../services/organisationsService';
 import {Subscription} from 'rxjs';
 import {UserService} from '../services/userService';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-organisations-page',
@@ -22,7 +23,7 @@ export class OrganisationsPageComponent implements OnInit{
   userEmailAddress = 'Email address...';
   errorMsg = '';
   errorMsgFail: boolean;
-  constructor(private userService: UserService , private organisationsService: OrganisationsService) {
+  constructor(private userService: UserService , private organisationsService: OrganisationsService,private datepipe: DatePipe) {
   }
    ngOnInit(): void {
      this.getAllOrganisationsSubscription = this.organisationsService.getOrganisations().subscribe( response => {
@@ -43,13 +44,15 @@ export class OrganisationsPageComponent implements OnInit{
      const data = {
        firstName: fName.value,
        lastName: lName.value,
-       birthday: bday.value,
+       birthday: this.datepipe.transform(bday.value,'dd/MM/yyyy'),
        phone: phone.value,
        email: email.value,
        description: desc.value,
        applied_at: this.selectedOrganisation.title
      };
-
+     console.log(fName);
+    console.log(data);
+    console.log(bday.valueAsDate);
      this.organisationsService.addVolunteer(data)
         .subscribe(
           response => {
