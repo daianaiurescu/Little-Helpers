@@ -21,7 +21,7 @@ import {CartComponent} from './Shop/Cart.component';
 import {UserPageComponent} from './UserPage/userPage.component';
 import {AuthInterceptorService} from './services/authInterceptorService';
 import {LoggedOrganisationComponent} from './OrganisationsPage/LoggedOrganisation.component';
-//import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire';
 import {environment} from '../environments/environment';
 import {DatePipe} from "@angular/common";
 
@@ -59,7 +59,7 @@ const routes: Routes = [
     DxSelectBoxModule,
     DxRadioGroupModule,
     DxScrollViewModule,
-    //AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
