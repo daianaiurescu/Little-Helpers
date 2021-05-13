@@ -55,7 +55,6 @@ export class UserService {
 
    authHandler(crd: AuthResp) {
     const expiresIn = (jwtDecode(crd.token) as JwtPayload).exp;
-    console.log(expiresIn);
     const expirationDate = new Date(expiresIn * 1000);
     const user = new User(crd.id, crd.firstName, crd.lastName, crd.emailAddress, crd.role, crd.token, expirationDate);
     this.user.next(user);
@@ -66,8 +65,8 @@ export class UserService {
 
   autoLogout(exp: number) {
     const expTime = exp - new Date().getTime();
-    //const testExpTime = 120000;
-    console.log("Auto logout at: " + expTime);
+    // const testExpTime = 120000;
+    console.log('Auto logout at: ' + expTime);
     this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
     }, expTime);
@@ -114,13 +113,23 @@ export class UserService {
     );
 
     if (loadedUser.token) {
-      this.router.navigate(['/userpage/:id']);
+      if (loadedUser.role === 'user') {
+        this.router.navigate(['/userpage/:id']);
+      }
+      else{
+        this.router.navigate(['/loggedOrganisation/:id']);
+      }
       this.user.next(loadedUser);
       const expirationDuration =
         new Date(userData._tokenExpirationDate).getTime() -
         new Date().getTime();
       this.autoLogout(expirationDuration);
     }
+  }
+
+  // tslint:disable-next-line:typedef
+  editUserInfo(data: any){
+    return this.httpClient.post(this.apiUrl + 'ChangeUserDetails', data);
   }
 
 }
