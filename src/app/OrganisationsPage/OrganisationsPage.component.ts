@@ -50,9 +50,6 @@ export class OrganisationsPageComponent implements OnInit{
        description: desc.value,
        applied_at: this.selectedOrganisation.title
      };
-     console.log(fName);
-    console.log(data);
-    console.log(bday.valueAsDate);
      this.organisationsService.addVolunteer(data)
         .subscribe(
           response => {
