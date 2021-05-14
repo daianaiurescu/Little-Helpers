@@ -14,6 +14,11 @@
     </dx-button>
     <dx-button
       class="button-info"
+      text="Organisations"
+      (onClick)="viewOrg()">
+    </dx-button>
+    <dx-button
+      class="button-info"
       text="Logout"
       (click)="onLogout()">
     </dx-button>
@@ -72,5 +77,40 @@
                  width="100" style="margin-left: 40%"></dx-button>
       <!--<div class="error" *ngIf="errorSignUpFail">{{ errorSignUp }}</div>-->
     </div>
+  </div>
+</dx-popup>
+<dx-popup
+  [width]="1000"
+  [height]="500"
+  [showTitle]="true"
+  title="Your Organisations where you applied"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="ViewOrgVisible">
+  <div *dxTemplate="let data of 'content'">
+    <dx-scroll-view>
+    <div *ngFor="let organisation of organisations" class="organisation-container">
+      <img [src]=organisation.photo [width]="200">
+      <div class="organisation-info">
+        <div class="organisation-title"> {{ organisation.title}}</div>
+        <p> {{ organisation.description }} </p>
+      </div>
+      <div class="buttons-section">
+        <dx-button class="button-info" style="height: 50px;width: 200px" (onClick)="deleteOrganisation(organisation)"> Unsubscribe</dx-button>
+      </div>
+    </div>
+    </dx-scroll-view>
+  </div>
+</dx-popup>
+<dx-popup
+  [width]="300"
+  [height]="200"
+  [showTitle]="true"
+  title="No Organisation"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="failViewOrgVisible">
+  <div *dxTemplate="let data of 'content'">
+    <p style="font-size: medium">Please visit Organisations page to apply</p>
   </div>
 </dx-popup>

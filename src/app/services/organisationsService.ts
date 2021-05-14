@@ -34,7 +34,14 @@ export class OrganisationsService{
   getVolunteer(data: any): Observable<any> {
     return this.httpClient.get(this.apiUrl + 'GetVolunteer', data);
   }
-
+  deleteOrganisationForUser(email: any , organisationName:any ) {
+    console.log(email);
+    console.log(organisationName);
+    return this.httpClient.delete(this.apiUrl + 'DeleteOrganisation/' + email + '/' + organisationName);
+  }
+  getOrganisationsForUser(data: any): Observable<any> {
+    return this.httpClient.get<Array<Organisation>>(this.apiUrl + 'UserOrganisations/' + data);
+  }
   // tslint:disable-next-line:typedef
   editDescription(data: any){
     console.log(data);
