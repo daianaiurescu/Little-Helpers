@@ -92,6 +92,18 @@ export class LoggedOrganisationComponent implements OnInit {
         console.log(error);
       });
   }
+  deleteVolunteer(volunteer): void{
+    const data = {
+      email: volunteer.email
+    };
+    this.organisationsService.deleteVolunteer(data).subscribe(response => {
+        console.log(response);
+        this.viewVolunteers();
+      },
+      error => {
+        console.log(error);
+      });
+  }
 
   viewVolunteers(): void {
     this.getAllVolunteersSubscription = this.organisationsService.getVolunteers().subscribe(response =>

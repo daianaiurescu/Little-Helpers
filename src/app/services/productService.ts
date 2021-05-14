@@ -23,7 +23,6 @@ export class ProductService{
   }
   // tslint:disable-next-line:typedef
   delete(data: any){
-    console.log(data);
     return this.httpClient.delete(this.apiUrl + 'DeleteProduct/' + data.title).pipe(tap(() => {
     }));
   }

@@ -47,4 +47,9 @@ export class OrganisationsService{
     console.log(data);
     return this.httpClient.post(this.apiUrl + 'ChangeOrganisationDetails', data);
   }
+  // tslint:disable-next-line:typedef
+  deleteVolunteer(data: any){
+    return this.httpClient.delete(this.apiUrl + 'DeleteVolunteer/' + data.email).pipe(tap(() => {
+    }));
+  }
 }

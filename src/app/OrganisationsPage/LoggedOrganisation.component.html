@@ -124,8 +124,7 @@
       <p>Descriprion: {{ volunteer.description}}</p>
         </span>
       <div class="popup-buttons">
-        <dx-button class="button-info mr-15"> Accept volunteer</dx-button>
-        <dx-button class="button-info"> Delete volunteer</dx-button>
+        <dx-button class="button-info" (onClick)="deleteVolunteer(volunteer)"> Delete volunteer</dx-button>
       </div>
     </div>
   </div>

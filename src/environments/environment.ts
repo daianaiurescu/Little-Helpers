@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:80/',
+  api: 'https://little2.herokuapp.com/',
   firebase: {
     apiKey: 'AIzaSyAvqrL8zKH525q13U3L8-1K6BlAApHmTu4',
     authDomain: 'little-helpers-40212.firebaseapp.com',
