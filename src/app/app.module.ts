@@ -23,7 +23,7 @@ import {AuthInterceptorService} from './services/authInterceptorService';
 import {LoggedOrganisationComponent} from './OrganisationsPage/LoggedOrganisation.component';
 import { AngularFireModule } from '@angular/fire';
 import {environment} from '../environments/environment';
-import {DatePipe} from "@angular/common";
+import {DatePipe} from '@angular/common';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -65,7 +65,7 @@ const routes: Routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true,
-  },DatePipe],
+  }, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

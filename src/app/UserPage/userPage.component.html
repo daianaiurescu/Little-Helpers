@@ -19,6 +19,11 @@
     </dx-button>
     <dx-button
       class="button-info"
+      text="View orders"
+      (click)="viewOrders()">
+    </dx-button>
+    <dx-button
+      class="button-info"
       text="Logout"
       (click)="onLogout()">
     </dx-button>
@@ -75,7 +80,6 @@
       </div>
       <dx-button (onClick)="save(newUserLastName, newUserEmail)" stylingMode="contained" text="Save"
                  width="100" style="margin-left: 40%"></dx-button>
-      <!--<div class="error" *ngIf="errorSignUpFail">{{ errorSignUp }}</div>-->
     </div>
   </div>
 </dx-popup>
@@ -89,16 +93,18 @@
   [(visible)]="ViewOrgVisible">
   <div *dxTemplate="let data of 'content'">
     <dx-scroll-view>
-    <div *ngFor="let organisation of organisations" class="organisation-container">
-      <img [src]=organisation.photo [width]="200">
-      <div class="organisation-info">
-        <div class="organisation-title"> {{ organisation.title}}</div>
-        <p> {{ organisation.description }} </p>
+      <div *ngFor="let organisation of organisations" class="organisation-container">
+        <img [src]=organisation.photo [width]="200" class="ml-30">
+        <div class="organisation-info">
+          <div class="organisation-title large mb-20"> {{ organisation.title}}</div>
+          <p class="no-wrap large"> {{ organisation.description }} </p>
+        </div>
+        <div class="buttons-section">
+          <dx-button class="button-info" style="height: 50px;width: 200px" (onClick)="deleteOrganisation(organisation)">
+            Unsubscribe
+          </dx-button>
+        </div>
       </div>
-      <div class="buttons-section">
-        <dx-button class="button-info" style="height: 50px;width: 200px" (onClick)="deleteOrganisation(organisation)"> Unsubscribe</dx-button>
-      </div>
-    </div>
     </dx-scroll-view>
   </div>
 </dx-popup>
@@ -112,5 +118,31 @@
   [(visible)]="failViewOrgVisible">
   <div *dxTemplate="let data of 'content'">
     <p style="font-size: medium">Please visit Organisations page to apply</p>
+  </div>
+</dx-popup>
+
+<dx-popup
+  [width]="500"
+  [height]="500"
+  [showTitle]="true"
+  title="Your Orders"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="userOrdersPopup">
+  <div *dxTemplate="let data of 'content'">
+    <dx-scroll-view>
+      <div *ngFor="let order of userOrders ; index as i" class="organisation-container">
+        <div *ngFor="let product of order.products">
+          <div class="organisation-info">
+            <div class="organisation-title large"> {{i + 1}}. Total : {{ order.total}} $</div>
+            <p class="large"> Shipment address: {{ order.address }} </p>
+            <p class="large"> What you've ordered:</p>
+            <p class="large">{{product.title}}</p>
+            <img [src] = product.photo [width]="200">
+            <p class="large">Sold by: {{product.sold_by}}</p>
+          </div>
+        </div>
+      </div>
+    </dx-scroll-view>
   </div>
 </dx-popup>

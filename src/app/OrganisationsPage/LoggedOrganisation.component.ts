@@ -8,6 +8,8 @@ import {Product} from '../Models/Product.interface';
 import {Volunteer} from '../Models/Volunteer.interface';
 import {finalize, map, take, tap} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {OrderService} from '../services/orderService';
+import {Order} from '../Models/Order.interface';
 
 @Component({
   selector: 'app-logged-organisation',
@@ -30,11 +32,15 @@ export class LoggedOrganisationComponent implements OnInit {
   addProductsPopupVisible = false;
   selectedImage: string;
   Image: string;
+  orderedProducts: Product[];
+  viewOrdersPopup: boolean;
+  orders: Order[];
 
   constructor(private userService: UserService,
               private organisationsService: OrganisationsService,
               private productService: ProductService,
-              private storage: AngularFireStorage
+              private storage: AngularFireStorage,
+              private orderService: OrderService
   ) {
   }
 
@@ -149,5 +155,10 @@ export class LoggedOrganisationComponent implements OnInit {
           console.log(error);
         });
     this.addProductsPopupVisible = false;
+  }
+  // tslint:disable-next-line:typedef
+  viewOrders(){
+    this.orderService.getOrders().subscribe(orders => this.orders = orders);
+    this.viewOrdersPopup = true;
   }
 }

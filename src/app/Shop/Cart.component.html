@@ -30,11 +30,13 @@
         </td>
         <td class="column-text padd-l-70">$ {{cartDetail.quantity * cartDetail.price | number}}
         </td>
-        <td class="padd-l-80"><button type="button"
-                    class="btn"
-                    (click)="deleteProduct(cartDetail.id)">
-          <i class="fa fa-trash"></i>
-        </button></td>
+        <td class="padd-l-80">
+          <button type="button"
+                  class="btn"
+                  (click)="deleteProduct(cartDetail.id)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
       </tr>
     </table>
     <div class="row">
@@ -45,11 +47,65 @@
       </div>
       <div class="col-md-6 text-right">
         <button type="button"
+                class="removeall ml-50p"
+                (click)="clientDetailsPopup = true">
+          Place order
+        </button>
+        <button type="button"
                 class="removeall"
                 (click)="removeAll()">
           <i class="fa fa-trash"></i>
-          Remove All Items</button>
+          Remove All Items
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+<dx-popup
+  [width]="450"
+  [height]="450"
+  [showTitle]="true"
+  title="Place order-complete your details"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="clientDetailsPopup">
+  <div *dxTemplate="let data of 'content'">
+    <div class="form">
+      <div class="dx-fieldset">
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup pr-40">First Name</div>
+          <div class="dx-field-value">
+            <dx-text-box value={{userFirstName}} [width]="200" #clientFirstName></dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field-popup">
+          <div class="dx-field-label-popup pr-40">Last Name</div>
+          <div class="dx-field-value">
+            <dx-text-box value={{userLastName}} [width]="200" #clientLastName></dx-text-box>
+          </div>
+        </div>
+      </div>
+      <div class="dx-field-popup">
+        <div class="dx-field-label-popup pl-20 pr-17">Phone number</div>
+        <div class="dx-field-value">
+          <dx-text-box placeholder="Phone number..." [width]="200" #clientPhone></dx-text-box>
+        </div>
+      </div>
+      <div class="dx-field-popup">
+        <div class="dx-field-label-popup pl-20 pr-20">Email Address</div>
+        <div class="dx-field-value">
+          <dx-text-box value={{userEmailAddress}} [width]="200" #clientEmail></dx-text-box>
+        </div>
+      </div>
+      <div class="dx-field-popup">
+        <div class="dx-field-label-popup pl-20 pr-50">Address</div>
+        <div class="dx-field-value">
+          <dx-text-box [width]="200" #clientAddress></dx-text-box>
+        </div>
+      </div>
+    </div>
+    <dx-button class="removeall ml-30" stylingMode="contained" text="Place order" width="300"
+               (onClick)="placeOrder(clientFirstName, clientLastName, clientEmail, clientPhone, clientAddress)"></dx-button>
+  </div>
+</dx-popup>

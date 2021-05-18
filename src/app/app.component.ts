@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   title = 'Little-Helpers';
   cartNumber = 0;
   constructor(private userService: UserService, private router: Router, private cartService: CartService) {
-      this.cartService.cartSubject.subscribe(data => typeof data === "number" ? this.cartNumber = data : data);
+      this.cartService.cartSubject.subscribe(data => typeof data === 'number' ? this.cartNumber = data : data);
   }
 
   ngOnInit(): void {

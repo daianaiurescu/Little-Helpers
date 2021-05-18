@@ -30,6 +30,11 @@
     </dx-button>
     <dx-button
       class="button-info"
+      text="View orders"
+      (click)="viewOrders()">
+    </dx-button>
+    <dx-button
+      class="button-info"
       text="Logout"
       (click)="logout()">
     </dx-button>
@@ -93,15 +98,17 @@
   [(visible)]="productsPopupVisible">
   <div *dxTemplate="let data of 'content'">
     <div *ngFor="let product of products" class="product-container">
-      <img [src]=product.photo [width]="200">
+      <img [src]=product.photo [width]="200" class="mr-15">
       <div class="product-info">
-        <div class="product-title"> {{ product.title}}</div>
-        <p class="text"> {{ product.description }} </p>
-        <p class="text"> Category: {{ product.category }} </p>
-        <p class="text"> {{ product.price }}$</p>
+        <div class="product-title large"> {{ product.title}}</div>
+        <p class="text large"> {{ product.description }} </p>
+        <p class="text large"> Category: {{ product.category }} </p>
+        <p class="text large"> {{ product.price }}$</p>
       </div>
       <div class="buttons-section">
-        <dx-button class="button-info" style="height: 50px;width: 200px" (onClick)="deleteProduct(product)"> Delete product</dx-button>
+        <dx-button class="button-info" style="height: 50px;width: 200px" (onClick)="deleteProduct(product)"> Delete
+          product
+        </dx-button>
       </div>
     </div>
   </div>
@@ -117,11 +124,11 @@
   <div *dxTemplate="let data of 'content'">
     <div *ngFor="let volunteer of volunteers" class="product-container">
       <span>
-      <p>Full name: {{ volunteer.firstName}} {{volunteer.lastName}}</p>
-      <p>Birthday: {{volunteer.birthday}}</p>
-      <p>Phone number: {{volunteer.phone}}</p>
-      <p>Email address: {{volunteer.email}}</p>
-      <p>Descriprion: {{ volunteer.description}}</p>
+      <p class="large">Full name: {{ volunteer.firstName}} {{volunteer.lastName}}</p>
+      <p class="large">Birthday: {{volunteer.birthday}}</p>
+      <p class="large">Phone number: {{volunteer.phone}}</p>
+      <p class="large">Email address: {{volunteer.email}}</p>
+      <p class="large">Descriprion: {{ volunteer.description}}</p>
         </span>
       <div class="popup-buttons">
         <dx-button class="button-info" (onClick)="deleteVolunteer(volunteer)"> Delete volunteer</dx-button>
@@ -181,5 +188,34 @@
       <dx-button (onClick)="saveProduct(newTitle, newCategory, newPrice, newStock, newDescription)"
                  stylingMode="contained" text="Save product" width="200" style="margin-left: 25%"></dx-button>
     </div>
+  </div>
+</dx-popup>
+
+<dx-popup
+  [width]="800"
+  [height]="500"
+  [showTitle]="true"
+  title="Your Orders"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="viewOrdersPopup">
+  <div *dxTemplate="let data of 'content'">
+    <dx-scroll-view>
+      <div *ngFor="let order of orders ; index as i" class="organisation-container">
+        <div *ngFor="let product of order.products">
+          <div *ngIf="product.sold_by === loggedOrganisation.title">
+            <div class="organisation-info">
+              <div class="organisation-title large"> {{i + 1}}. Total : {{ order.total}} $</div>
+              <p class="large"> Ordered by: {{order.firstName}} {{order.lastName}}</p>
+              <p class="large"> Client contact info: {{order.phone}} , {{order.email}}</p>
+              <p class="large"> Shipment address: {{ order.address }} </p>
+              <p class="large"> Products:</p>
+              <p class="large">{{product.title}}</p>
+              <img [src]=product.photo [width]="200">
+            </div>
+          </div>
+        </div>
+      </div>
+    </dx-scroll-view>
   </div>
 </dx-popup>
